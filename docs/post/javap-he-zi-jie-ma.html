@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## javap
+
+------
+
+![image-20240715171332888](https://github.com/user-attachments/assets/6f50f969-a1f4-414e-bb25-91cf4dd1bc84)
+
+
+## 字节码的基本信息
+
+------
+
+```java
+public class Test {
+    private int age = 10;
+
+    public int getAge() {
+        return age;
+    }
+}
+```
+
+- 在 class 文件的同级目录下输入命令 `javap -v -p Test.class` 来查看一下输出的内容
+
+```java
+// 字节码文件的位置
+Classfile /D:/Code/code/JavaCode/JavaSourceLearn/out/production/JavaSourceLearn/test/JVM/Test.class
+  // 文件的修改日期和大小
+  Last modified 2024年7月15日; size 369 bytes
+  // 字节码文件的 SHA-256 值，用于校验文件的完整性
+  SHA-256 checksum ece86f04e47d4ba3e27fc08cf3cb675a31670d9eab284fc0b2e8487ed8ed1c73
+  // 该字节码文件编译自 Main.java 源文件
+  Compiled from 'Test.java'
+// 类访问修饰符和类型，表明这是一个公开的类，名为test.JVM.Test
+public class test.JVM.Test
+  // 次版本号
+  minor version: 0
+  // 主版本号 由 Java 8 编译
+  major version: 52
+  // 类访问标记:表明当前类是 ACC_PUBLIC | ACC_SUPER（表明这个类是 public 的，并且使用了 super 关键字）。">
+<meta property="og:title" content="javap和字节码">
+<meta property="og:description" content="## javap
+
+------
+
+![image-20240715171332888](https://github.com/user-attachments/assets/6f50f969-a1f4-414e-bb25-91cf4dd1bc84)
+
+
+## 字节码的基本信息
+
+------
+
+```java
+public class Test {
+    private int age = 10;
+
+    public int getAge() {
+        return age;
+    }
+}
+```
+
+- 在 class 文件的同级目录下输入命令 `javap -v -p Test.class` 来查看一下输出的内容
+
+```java
+// 字节码文件的位置
+Classfile /D:/Code/code/JavaCode/JavaSourceLearn/out/production/JavaSourceLearn/test/JVM/Test.class
+  // 文件的修改日期和大小
+  Last modified 2024年7月15日; size 369 bytes
+  // 字节码文件的 SHA-256 值，用于校验文件的完整性
+  SHA-256 checksum ece86f04e47d4ba3e27fc08cf3cb675a31670d9eab284fc0b2e8487ed8ed1c73
+  // 该字节码文件编译自 Main.java 源文件
+  Compiled from 'Test.java'
+// 类访问修饰符和类型，表明这是一个公开的类，名为test.JVM.Test
+public class test.JVM.Test
+  // 次版本号
+  minor version: 0
+  // 主版本号 由 Java 8 编译
+  major version: 52
+  // 类访问标记:表明当前类是 ACC_PUBLIC | ACC_SUPER（表明这个类是 public 的，并且使用了 super 关键字）。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sprinining.github.io/post/javap-he-zi-jie-ma.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>javap和字节码</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">javap和字节码</h1>
+<div class="title-right">
+    <a href="https://sprinining.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/Sprinining/sprinining.github.io/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>javap</h2>
+<hr>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6f50f969-a1f4-414e-bb25-91cf4dd1bc84"><img src="https://github.com/user-attachments/assets/6f50f969-a1f4-414e-bb25-91cf4dd1bc84" alt="image-20240715171332888" style="max-width: 100%;"></a></p>
+<h2>字节码的基本信息</h2>
+<hr>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Test</span> {
+    <span class="pl-k">private</span> <span class="pl-smi">int</span> <span class="pl-s1">age</span> = <span class="pl-c1">10</span>;
+
+    <span class="pl-k">public</span> <span class="pl-smi">int</span> <span class="pl-en">getAge</span>() {
+        <span class="pl-k">return</span> <span class="pl-s1">age</span>;
+    }
+}</pre></div>
+<ul>
+<li>在 class 文件的同级目录下输入命令 <code class="notranslate">javap -v -p Test.class</code> 来查看一下输出的内容</li>
+</ul>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c">// 字节码文件的位置</span>
+<span class="pl-s1">Classfile</span> /<span class="pl-s1">D</span>:/<span class="pl-s1">Code</span>/<span class="pl-s1">code</span>/<span class="pl-s1">JavaCode</span>/<span class="pl-s1">JavaSourceLearn</span>/<span class="pl-s1">out</span>/<span class="pl-s1">production</span>/<span class="pl-s1">JavaSourceLearn</span>/<span class="pl-s1">test</span>/<span class="pl-c1">JVM</span>/<span class="pl-smi">Test</span>.<span class="pl-smi">class</span>
+  <span class="pl-c">// 文件的修改日期和大小</span>
+  <span class="pl-s1">Last</span> <span class="pl-s1">modified</span> <span class="pl-c1">2024</span>年<span class="pl-c1">7</span>月<span class="pl-c1">15</span>日; <span class="pl-s1">size</span> <span class="pl-c1">369</span> <span class="pl-s1">bytes</span>
+  <span class="pl-c">// 字节码文件的 SHA-256 值，用于校验文件的完整性</span>
+  <span class="pl-c1">SHA</span>-<span class="pl-c1">256</span> <span class="pl-smi">checksum</span> <span class="pl-s1">ece86f04e47d4ba3e27fc08cf3cb675a31670d9eab284fc0b2e8487ed8ed1c73</span>
+  <span class="pl-c">// 该字节码文件编译自 Main.java 源文件</span>
+  <span class="pl-smi">Compiled</span> <span class="pl-s1">from</span> <span class="pl-s">"Test.java"</span>
+<span class="pl-c">// 类访问修饰符和类型，表明这是一个公开的类，名为test.JVM.Test</span>
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-s1">test</span>.<span class="pl-c1">JVM</span>.<span class="pl-s1">Test</span>
+  <span class="pl-c">// 次版本号</span>
+  <span class="pl-s1">minor</span> <span class="pl-s1">version</span>: <span class="pl-c1">0</span>
+  <span class="pl-c">// 主版本号 由 Java 8 编译</span>
+  <span class="pl-s1">major</span> <span class="pl-s1">version</span>: <span class="pl-c1">52</span>
+  <span class="pl-c">// 类访问标记:表明当前类是 ACC_PUBLIC | ACC_SUPER（表明这个类是 public 的，并且使用了 super 关键字）。</span>
+  <span class="pl-s1">flags</span>: (<span class="pl-c1">0x0021</span>) <span class="pl-c1">ACC_PUBLIC</span>, <span class="pl-c1">ACC_SUPER</span>
+  <span class="pl-c">// 当前类的索引，指向常量池中下标为 3 的常量，当前类是 Test 类</span>
+  <span class="pl-s1">this_class</span>: #<span class="pl-c1">3</span>                          <span class="pl-c">// test/JVM/Test</span>
+  <span class="pl-c">// 父类的索引，指向常量池中下标为 4 的常量，当前类的父类是 Object 类</span>
+  <span class="pl-s1">super_class</span>: #<span class="pl-c1">4</span>                         <span class="pl-c">// java/lang/Object</span>
+  <span class="pl-c">// 当前类有 0 个接口，1 个字段（age），2 个方法（getAge()方法和缺省的默认构造方法），1 个属性（该类仅有的一个属性是 SourceFIle，包含了源码文件的信息）。</span>
+  <span class="pl-s1">interfaces</span>: <span class="pl-c1">0</span>, <span class="pl-s1">fields</span>: <span class="pl-c1">1</span>, <span class="pl-s1">methods</span>: <span class="pl-c1">2</span>, <span class="pl-s1">attributes</span>: <span class="pl-c1">1</span>   
+<span class="pl-c">// 常量池</span>
+<span class="pl-s1">Constant</span> <span class="pl-s1">pool</span>:
+<span class="pl-c">// 类型为 Methodref，表明是用来定义方法的，指向常量池中下标为 4 和 18 的常量</span>
+   #<span class="pl-c1">1</span> = <span class="pl-s1">Methodref</span>          #<span class="pl-c1">4.</span>#<span class="pl-c1">18</span>         <span class="pl-c">// java/lang/Object."&lt;init&gt;":()V</span>
+<span class="pl-c">// 类型为 Fieldref，表明是用来定义字段的，指向常量池中下标为 3 和 19 的常量</span>
+   #<span class="pl-c1">2</span> = <span class="pl-s1">Fieldref</span>           #<span class="pl-c1">3.</span>#<span class="pl-c1">19</span>         <span class="pl-c">// test/JVM/Test.age:I</span>
+<span class="pl-c">// 类型为 Class，表明是用来定义类（或者接口）的，指向常量池中下标为 20 的常量</span>
+   #<span class="pl-c1">3</span> = <span class="pl-s1">Class</span>              #<span class="pl-c1">20</span>            <span class="pl-c">// test/JVM/Test</span>
+<span class="pl-c">// 类型为 Class，表明是用来定义类（或者接口）的，指向常量池中下标为 21 的常量</span>
+   #<span class="pl-c1">4</span> = <span class="pl-s1">Class</span>              #<span class="pl-c1">21</span>            <span class="pl-c">// java/lang/Object</span>
+<span class="pl-c">// 类型为 Utf8，UTF-8 编码的字符串，值为 age，表明字段名为 age</span>
+   #<span class="pl-c1">5</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">age</span>
+<span class="pl-c">// 类型为 Utf8，UTF-8 编码的字符串，值为 I，表明字段的类型为 int</span>
+   #<span class="pl-c1">6</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">I</span>
+<span class="pl-c">// 类型为 Utf8，UTF-8 编码的字符串，值为 &lt;init&gt;，表明为构造方法</span>
+   #<span class="pl-c1">7</span> = <span class="pl-s1">Utf8</span>               &lt;<span class="pl-s1">init</span>&gt;
+<span class="pl-c">// 类型为 Utf8，UTF-8 编码的字符串，值为 ()V，表明方法的返回值为 void</span>
+   #<span class="pl-c1">8</span> = <span class="pl-s1">Utf8</span>               ()<span class="pl-s1">V</span>
+   #<span class="pl-c1">9</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">Code</span>
+  #<span class="pl-c1">10</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">LineNumberTable</span>
+  #<span class="pl-c1">11</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">LocalVariableTable</span>
+  #<span class="pl-c1">12</span> = <span class="pl-s1">Utf8</span>               <span class="pl-smi">this</span>
+  #<span class="pl-c1">13</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">Ltest</span>/<span class="pl-c1">JVM</span>/<span class="pl-s1">Test</span>;
+  #<span class="pl-c1">14</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">getAge</span>
+  #<span class="pl-c1">15</span> = <span class="pl-s1">Utf8</span>               ()<span class="pl-s1">I</span>
+  #<span class="pl-c1">16</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">SourceFile</span>
+  #<span class="pl-c1">17</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">Test</span>.<span class="pl-s1">java</span>
+<span class="pl-c">// 类型为 NameAndType，表明是字段或者方法的部分符号引用，指向常量池中下标为 7 和 8 的常量</span>
+  #<span class="pl-c1">18</span> = <span class="pl-s1">NameAndType</span>        #<span class="pl-c1">7</span>:#<span class="pl-c1">8</span>          <span class="pl-c">// "&lt;init&gt;":()V</span>
+<span class="pl-c">// 类型为 NameAndType，表明是字段或者方法的部分符号引用，指向常量池中下标为 5 和 6 的常量</span>
+  #<span class="pl-c1">19</span> = <span class="pl-s1">NameAndType</span>        #<span class="pl-c1">5</span>:#<span class="pl-c1">6</span>          <span class="pl-c">// age:I</span>
+  #<span class="pl-c1">20</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">test</span>/<span class="pl-c1">JVM</span>/<span class="pl-s1">Test</span>
+<span class="pl-c">// 类型为 Utf8，UTF-8 编码的字符串，值为 java/lang/Object</span>
+  #<span class="pl-c1">21</span> = <span class="pl-s1">Utf8</span>               <span class="pl-s1">java</span>/<span class="pl-s1">lang</span>/<span class="pl-s1">Object</span>
+{
+  <span class="pl-c">// 字段表</span>
+  <span class="pl-k">private</span> int <span class="pl-s1">age</span>;
+    <span class="pl-s1">descriptor</span>: <span class="pl-s1">I</span>
+    <span class="pl-s1">flags</span>: (<span class="pl-c1">0x0002</span>) <span class="pl-c1">ACC_PRIVATE</span>
+  <span class="pl-c">// 方法表</span>
+  <span class="pl-c">// 构造方法，返回类型为 void，访问标志为 public</span>
+  <span class="pl-k">public</span> <span class="pl-s1">test</span>.<span class="pl-c1">JVM</span>.<span class="pl-s1">Test</span>();
+    <span class="pl-s1">descriptor</span>: ()<span class="pl-s1">V</span>
+    <span class="pl-s1">flags</span>: (<span class="pl-c1">0x0001</span>) <span class="pl-c1">ACC_PUBLIC</span>
+    <span class="pl-s1">Code</span>:
+      <span class="pl-c">// stack 为最大操作数栈，Java 虚拟机在运行的时候会根据这个值来分配栈帧的操作数栈深度</span>
+      <span class="pl-c">// locals 为局部变量所需要的存储空间，单位为槽（slot），方法的参数变量和方法内的局部变量都会存储在局部变量表中；局部变量表的容量以变量槽为最小单位，一个变量槽可以存放一个 32 位以内的数据类型，比如 boolean、byte、char、short、int、float、reference 和 returnAddress 类型；局部变量表所需的容量大小是在编译期间完成计算的，大小由编译器决定；对于实例方法（如构造方法），局部变量表的第一个位置（索引 0）总是用于存储 this 引用</span>
+      <span class="pl-c">// args_size 为方法的参数个数，有一个隐藏的 this 变量</span>
+      <span class="pl-s1">stack</span>=<span class="pl-c1">2</span>, <span class="pl-s1">locals</span>=<span class="pl-c1">1</span>, <span class="pl-s1">args_size</span>=<span class="pl-c1">1</span>
+         <span class="pl-c1">0</span>: <span class="pl-s1">aload_0</span>
+         <span class="pl-c1">1</span>: <span class="pl-s1">invokespecial</span> #<span class="pl-c1">1</span>                  <span class="pl-c">// Method java/lang/Object."&lt;init&gt;":()V</span>
+         <span class="pl-c1">4</span>: <span class="pl-s1">aload_0</span>
+         <span class="pl-c1">5</span>: <span class="pl-s1">bipush</span>        <span class="pl-c1">10</span>
+         <span class="pl-c1">7</span>: <span class="pl-s1">putfield</span>      #<span class="pl-c1">2</span>                  <span class="pl-c">// Field age:I</span>
+        <span class="pl-c1">10</span>: <span class="pl-k">return</span>
+      <span class="pl-c">// 描述源码行号与字节码行号(字节码偏移量)之间的对应关系</span>
+      <span class="pl-s1">LineNumberTable</span>:
+        <span class="pl-s1">line</span> <span class="pl-c1">4</span>: <span class="pl-c1">0</span>
+        <span class="pl-s1">line</span> <span class="pl-c1">5</span>: <span class="pl-c1">4</span>
+      <span class="pl-c">// LocalVariableTable描述帧栈中的局部变量与源码中定义的变量之间的关系</span>
+      <span class="pl-s1">LocalVariableTable</span>:
+      <span class="pl-c">// Start 和 Length：定义变量在方法中的作用域。Start 是变量生效的字节码偏移量，Length 是它保持活动的长度。</span>
+      <span class="pl-c">// Slot：变量在局部变量数组中的索引</span>
+      <span class="pl-c">// Name：变量的名称，如在源代码中定义的</span>
+      <span class="pl-c">// Signature：变量的类型描述符</span>
+        <span class="pl-s1">Start</span>  <span class="pl-s1">Length</span>  <span class="pl-s1">Slot</span>  <span class="pl-s1">Name</span>   <span class="pl-s1">Signature</span>
+            <span class="pl-c1">0</span>      <span class="pl-c1">11</span>     <span class="pl-c1">0</span>  <span class="pl-smi">this</span>   <span class="pl-s1">Ltest</span>/<span class="pl-c1">JVM</span>/<span class="pl-s1">Test</span>;
+  <span class="pl-c">// 成员方法</span>
+  <span class="pl-k">public</span> int <span class="pl-s1">getAge</span>();
+    <span class="pl-s1">descriptor</span>: ()<span class="pl-s1">I</span>
+    <span class="pl-s1">flags</span>: (<span class="pl-c1">0x0001</span>) <span class="pl-c1">ACC_PUBLIC</span>
+    <span class="pl-s1">Code</span>:
+      <span class="pl-c">// 最大操作数栈为 1，局部变量所需要的存储空间为 1，方法的参数个数为 1，是因为局部变量只有一个隐藏的 this，并且字节码指令中只执行了一次 aload_0</span>
+      <span class="pl-s1">stack</span>=<span class="pl-c1">1</span>, <span class="pl-s1">locals</span>=<span class="pl-c1">1</span>, <span class="pl-s1">args_size</span>=<span class="pl-c1">1</span>
+          <span class="pl-c">//  加载 this 引用到栈顶，以便接下来访问实例字段 age</span>
+         <span class="pl-c1">0</span>: <span class="pl-s1">aload_0</span>
+          <span class="pl-c">// 获取字段值。这条指令读取 this 对象的 age 字段的值，并将其推送到栈顶。#2 是对常量池中的字段引用。</span>
+         <span class="pl-c1">1</span>: <span class="pl-s1">getfield</span>      #<span class="pl-c1">2</span>                  <span class="pl-c">// Field age:I</span>
+          <span class="pl-c">// 返回栈顶整型值。这里返回的是 age 字段的值</span>
+         <span class="pl-c1">4</span>: <span class="pl-s1">ireturn</span>
+      <span class="pl-s1">LineNumberTable</span>:
+        <span class="pl-s1">line</span> <span class="pl-c1">8</span>: <span class="pl-c1">0</span>
+      <span class="pl-s1">LocalVariableTable</span>:
+        <span class="pl-s1">Start</span>  <span class="pl-s1">Length</span>  <span class="pl-s1">Slot</span>  <span class="pl-s1">Name</span>   <span class="pl-s1">Signature</span>
+            <span class="pl-c1">0</span>       <span class="pl-c1">5</span>     <span class="pl-c1">0</span>  <span class="pl-smi">this</span>   <span class="pl-s1">Ltest</span>/<span class="pl-c1">JVM</span>/<span class="pl-s1">Test</span>;
+}
+<span class="pl-s1">SourceFile</span>: "<span class="pl-s1">Test</span>.<span class="pl-s1">java</span>"</pre></div>
+<ul>
+<li>
+<p>Java 虚拟机是在加载字节码文件的时候才进行的动态链接，也就是说，字段和方法的符号引用只有经过运行期转换后才能获得真正的内存地址。当 Java 虚拟机运行时，需要从常量池获取对应的符号引用，然后在类创建或者运行时解析并翻译到具体的内存地址上。</p>
+</li>
+<li>
+<p>Test类使用的是默认的构造方法，来源于 Object 类。<code class="notranslate">#4</code> 指向 <code class="notranslate">Class #21</code>（即 <code class="notranslate">java/lang/Object</code>），<code class="notranslate">#18</code> 指向 <code class="notranslate">NameAndType #7:#8</code>（即 <code class="notranslate">&lt;init&gt;:()V</code>）。</p>
+</li>
+<li>
+<p>声明了一个类型为 int 的字段 age。<code class="notranslate">#3</code> 指向 <code class="notranslate">Class #20</code>（即 <code class="notranslate">test/JVM/Test</code>），<code class="notranslate">#19</code> 指向 <code class="notranslate">NameAndType #5:#6</code>（即 <code class="notranslate">age:I</code>）</p>
+</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="center">标识字符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">B</td>
+<td align="center">基本数据类型 byte</td>
+</tr>
+<tr>
+<td align="center">C</td>
+<td align="center">基本数据类型 char</td>
+</tr>
+<tr>
+<td align="center">D</td>
+<td align="center">基本数据类型 double</td>
+</tr>
+<tr>
+<td align="center">F</td>
+<td align="center">基本数据类型 float</td>
+</tr>
+<tr>
+<td align="center">I</td>
+<td align="center">基本数据类型 int</td>
+</tr>
+<tr>
+<td align="center">J</td>
+<td align="center">基本数据类型 long</td>
+</tr>
+<tr>
+<td align="center">S</td>
+<td align="center">基本数据类型 short</td>
+</tr>
+<tr>
+<td align="center">Z</td>
+<td align="center">基本数据类型 boolean</td>
+</tr>
+<tr>
+<td align="center">V</td>
+<td align="center">特殊类型 void</td>
+</tr>
+<tr>
+<td align="center">L</td>
+<td align="center">引用数据类型，以分号“；”结尾</td>
+</tr>
+<tr>
+<td align="center">[</td>
+<td align="center">一维数组</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>字段表集合</h2>
+<hr>
+<ul>
+<li>字段表用来描述接口或者类中声明的==变量==，包括类变量和成员变量，但不包含声明在方法中局部变量</li>
+</ul>
+<p>字段的修饰符一般有：</p>
+<ul>
+<li>访问权限修饰符，比如 public private protected</li>
+<li>静态变量修饰符，比如 static</li>
+<li>final</li>
+<li>并发可见性修饰符，比如 volatil序列化修饰符，比如 transient</li>
+</ul>
+<p>然后是字段的类型（可以是基本数据类型、数组和对象）和名称。</p>
+<h2>方法表集合</h2>
+<ul>
+<li>方法表用来描述接口或者类中声明的==方法==，包括类方法和成员方法，以及构造方法</li>
+</ul></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://sprinining.github.io"> Blog Title </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","Sprinining/sprinining.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
