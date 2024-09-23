@@ -186,3 +186,40 @@ tags: [标签名称]     # TAG names should always be lowercase，但我用标�
   `![image](排序.assets/image-25.png)` 变成 `![image](/assets/media/pictures/algorithm/排序.assets/image-25.png)`，这样配置后，构建后网页上能看见图片。但在 github 站点仓库里，直接打开这个 md 文档的话，是显示不出来图片的。
 
 - 不在 Front Matter 里加图片父路径，直接在每个图片的路径前手动加上 `/assets/media/pictures/algorithm/`，这样 github 站点仓库里，直接打开这个 md 文档，图片就能正常显示了。
+
+## 增加留言面板
+
+- 安装 utterances ：点击 [github app - utterances](https://github.com/apps/utterances) 后，选择 Install，在后面的页面里选择自己的仓库。
+- 设置：选好仓库后会调整到 [utterances - 首頁](https://utteranc.es/)，在 configuration 区域里设置。
+  - 在 Respository 中==填好自己仓库的地址==，如 `Sprinining/sprinining.github.io`
+  - 在 Blog Post ↔️ Issue Mapping 中选择一项映射方式，我选的第二个
+  - 在 Issue Label 中填写标签（可选），我填的 Comment
+  - 在 Theme 选个主题
+- 复制代码：复制 Enable Utterances 中根据上面几个选项自动生成的代码，代码里有一项仓库名称要改成自己的。这个代码我没用到，自己定义布局文件才会用到。
+- 修改项目里的 `_config.yml` 文件：
+
+```yml
+comments:
+  # Global switch for the post-comment system. Keeping it empty means disabled.
+  provider: utterances # [disqus | utterances | giscus]
+  # The provider options are as follows:
+  disqus:
+    shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+  # utterances settings › https://utteranc.es/
+  utterances:
+    repo: Sprinining/sprinining.github.io # <gh-username>/<repo>
+    issue_term: url # < url | pathname | title | ...> 这个填的内容在之前生成的代码里也有
+  # Giscus options › https://giscus.app
+  giscus:
+    repo: # <gh-username>/<repo>
+    repo_id:
+    category:
+    category_id:
+    mapping: # optional, default to 'pathname'
+    strict: # optional, default to '0'
+    input_position: # optional, default to 'bottom'
+    lang: # optional, default to the value of `site.lang`
+    reactions_enabled: # optional, default to the value of `1`
+```
+
+- 重新部署后就能生效了，留言在 github 的 Issues 里也能看见
