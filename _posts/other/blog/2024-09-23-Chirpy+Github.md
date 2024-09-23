@@ -21,8 +21,6 @@ description:
 
 - [阿里图标库](https://www.iconfont.cn/)：白嫖图标
 
-- [其他博客模板](http://jekyllthemes.org/)
-
 ## 先本地跑起来再说
 
 ------
