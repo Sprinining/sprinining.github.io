@@ -164,7 +164,7 @@ tags: [标签名称]     # TAG names should always be lowercase，但我用标�
 
 ##### 文件内容要求
 
-- ==不能出现连续的两个左大括号== `{{`，否则构建的时候会报错：`Liquid Exception: Liquid syntax error (line 123): Variable '{{0,1}' was not properly terminated with regexp: /\}\}/ in xxx.md `，大括号中间加个空格就行了。
+- ==不能出现连续的两个左大括号== `{ {`，否则构建的时候会报错：`Liquid Exception: Liquid syntax error (line 123): Variable '{ {0,1}' was not properly terminated with regexp: /\}\}/ in xxx.md `，大括号中间加个空格就行了。
 
 #### 用脚本修改原始的 md 文件
 
