@@ -30,7 +30,7 @@ int main() {
 }
 ```
 
-![img](/assets/media/pictures/priority_queue.assets/2-1P913134031947.jpg)
+![img](/assets/media/pictures/cpp/priority_queue.assets/2-1P913134031947.jpg)
 
 ### 创建和初始化
 
