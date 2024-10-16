@@ -10,6 +10,17 @@
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
 
+# - type: blog
+#   icon: "fa-solid fa-blog"
+#   url: "https://www.cnblogs.com/sprinining"
+
+- type: code
+  icon: "fa-solid fa-laptop-code"
+  url: "https://leetcode.cn/u/sprinining/"
+
+- type: steam
+  icon: "fa-brands fa-steam"
+  url: "https://steamcommunity.com/id/n1ce2cu/"
 # - type: rss
 #   icon: "fas fa-rss"
 #   noblank: true
