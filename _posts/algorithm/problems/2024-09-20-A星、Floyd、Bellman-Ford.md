@@ -3,7 +3,7 @@ title: A星、Floyd、Bellman-Ford
 date: 2024-09-20 08:42:32 +0800
 categories: [algorithm, problems]
 tags: [Algorithm, A*, Floyd, Bellman-Ford]
-description: 
+description: A*算法是一种启发式搜索算法，通过估计距离来寻找最短路径。Floyd-Warshall算法用于计算任意两点之间的最短路径，适用于稠密图。Bellman-Ford算法则能处理带负权边的图，能够找出从单源到其他所有点的最短路径。
 ---
 ## A 星算法
 
