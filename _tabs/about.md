@@ -14,6 +14,3 @@ while (dev.isInFrontOfComputer()) {
     dev.feelLikeAProfessionalDeveloper();
 }
 ```
-
-- 学习记录
-- 2024.11: 备战考研
