@@ -14,5 +14,3 @@ while (dev.isInFrontOfComputer()) {
     dev.feelLikeAProfessionalDeveloper();
 }
 ```
-
-- 学习记录
