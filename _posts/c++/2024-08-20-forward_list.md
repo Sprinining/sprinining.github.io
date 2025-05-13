@@ -1,7 +1,7 @@
 ---
 title: forward_list
 date: 2024-08-20 07:24:14 +0800
-categories: [c++]
+categories: [c++, stl]
 tags: [C++, C++ STL]
 description: 
 ---

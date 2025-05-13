@@ -1,7 +1,7 @@
 ---
 title: priority_queue
 date: 2024-08-25 04:29:31 +0800
-categories: [c++]
+categories: [c++, stl]
 tags: [C++, C++ STL]
 description: 
 ---
