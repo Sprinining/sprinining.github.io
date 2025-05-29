@@ -1,5 +1,5 @@
 ---
-title: volatile关键字
+title: volatile关键字（Java）
 date: 2024-07-19 12:39:45 +0800
 categories: [java, concurrent programming]
 tags: [Java, Concurrent Programming, Volatile]
