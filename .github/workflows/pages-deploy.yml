@@ -1,73 +1,81 @@
-name: "Build and Deploy"
+name: "Build and Deploy"  # 工作流名称，会在 Actions 页面显示
+
+# 触发条件
 on:
   push:
     branches:
-      - main
-      - master
+      - main       # 当推送到 main 分支时触发
+      - master     # 当推送到 master 分支时触发
     paths-ignore:
-      - .gitignore
+      - .gitignore  # 忽略这几个文件的提交，不触发构建
       - README.md
       - LICENSE
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  workflow_dispatch:  # 支持手动在 GitHub 页面点击运行 workflow
 
+# 权限配置（最小权限原则）
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read       # 读取代码仓库内容（actions/checkout 需要）
+  pages: write         # 有权部署到 GitHub Pages
+  id-token: write      # 用于身份验证（OIDC 身份验证）
 
-# Allow one concurrent deployment
+# 并发控制：防止多个部署同时进行
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  group: "pages"              # 同一个组只允许一个 workflow 实例运行
+  cancel-in-progress: true    # 如果有新的部署触发，取消正在运行的旧部署
 
+# 主任务组
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build:  # 第一个 Job：构建 Jekyll 网站
+    runs-on: ubuntu-latest  # 使用 GitHub 托管的 Ubuntu 虚拟机运行
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          # submodules: true
-          # If using the 'assets' git submodule from Chirpy Starter, uncomment above
-          # (See: https://github.com/cotes2020/chirpy-starter/tree/main/assets)
+          fetch-depth: 0     # 获取完整 Git 历史（对 Jekyll 的时间戳有用）
+
+          # submodules: true # 如果使用了 Git 子模块（如 Chirpy Starter 的 assets），取消注释
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
+        # 用于配置 GitHub Pages 环境，输出 base_path 供后续使用
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
-          bundler-cache: true
+          ruby-version: 3.3      # 安装 Ruby 3.3（Jekyll 必需）
+          bundler-cache: true    # 缓存 Bundler 依赖，加快构建速度
 
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: "production"
+        # 使用 Jekyll 构建站点，构建目录是 _site/...（考虑 base_path）
 
       - name: Test site
         run: |
           bundle exec htmlproofer _site \
             \-\-disable-external \
             \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+        # 使用 htmlproofer 工具检查生成的 HTML 是否有无效链接（只检测内部链接）
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "_site${{ steps.pages.outputs.base_path }}"
+        # 上传构建好的 _site 目录作为部署工件，供后续 job 使用
 
-  deploy:
+  deploy:  # 第二个 Job：部署构建好的站点到 GitHub Pages
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}  # 显示部署后的网址链接
     runs-on: ubuntu-latest
-    needs: build
+    needs: build  # 等待 build job 完成
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        # 使用官方 GitHub Pages 部署 action，将上一步上传的 artifact 发布到 Pages
