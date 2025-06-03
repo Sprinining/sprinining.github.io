@@ -30,21 +30,15 @@ jobs:
         run: JEKYLL_ENV=production bundle exec jekyll build
         # 运行 Jekyll 构建静态站点，生成 _site 目录
 
-      - name: Prepare deploy directory
-        run: |
-          mkdir -p deploy
-          cp -r _site/* deploy/
-        # 新建 deploy 文件夹，复制生成的静态文件到 deploy 目录，方便统一上传
-
-      - name: Upload static files to server
+      - name: Upload _site to server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "deploy/*"
+          source: "_site/*"
           target: "/home/ubuntu/chirpy-site/_site"
-        # 通过 SCP 把本地 deploy 目录里的所有文件上传到服务器指定目录
+        # 直接上传 _site 内容到服务器指定目录
 
       - name: Restart nginx container on server
         uses: appleboy/ssh-action@v0.1.7
@@ -55,4 +49,4 @@ jobs:
           script: |
             cd /home/ubuntu/chirpy-site
             docker compose restart blog
-        # SSH 连接服务器，进入部署目录，重启 Docker Compose 中的 blog 服务，确保最新内容生效
+        # SSH 登录服务器，重启 nginx 容器，应用最新的 _site 内容
