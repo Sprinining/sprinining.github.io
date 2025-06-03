@@ -1,9 +1,9 @@
 ---
-title: 服务器搭建博客
+title: 基于 Chirpy 的 Jekyll 博客：Docker + GitHub Actions 全自动 CI/CD 部署指南
 date: 2025-06-02 22:34:39 +0800
-categories: [other, blog]
-tags: [Blog, Chripy, Docker, CICD, Nginx]
-description: ""
+categories: [DevOps, Blog]
+tags: [blog, chirpy, docker, cicd, github-actions, nginx]
+description: "使用 Docker 和 GitHub Actions 将 Chirpy 主题的 Jekyll 博客实现自动化部署的完整指南。"
 ---
 ## 基于 Chirpy 的 Jekyll 博客：Docker + GitHub Actions 全自动 CI/CD 部署指南
 
