@@ -42,5 +42,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/ubuntu/chirpy-site
-            docker-compose down
-            docker-compose up --build -d
+            docker compose down
+            docker compose up --build -d
