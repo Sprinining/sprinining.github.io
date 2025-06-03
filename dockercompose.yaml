@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  blog:
+    build: . # 构建当前目录的 Dockerfile
+    container_name: chirpy_blog
+    ports:
+      - "9527:80" # 映射服务器 9527 端口
+    restart: unless-stopped # 自动重启
