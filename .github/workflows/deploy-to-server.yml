@@ -32,10 +32,10 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           source: "_site/*"
-          target: "/home/ubuntu/chirpy-site" # 替换为服务器上的部署路径
+          target: "/home/ubuntu/chirpy-site"
 
       - name: 远程重启 Docker 服务
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
