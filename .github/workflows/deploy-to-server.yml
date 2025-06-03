@@ -2,7 +2,7 @@ name: Build and Deploy Chirpy Blog
 
 on:
   push:
-    branches: [main]  # 监听 main 分支的提交
+    branches: [main]
 
 jobs:
   build-and-deploy:
@@ -22,10 +22,10 @@ jobs:
           gem install bundler
           bundle install
 
-      - name: Build Jekyll site
+      - name: Build static site with Jekyll
         run: JEKYLL_ENV=production bundle exec jekyll build
 
-      - name: Package built site
+      - name: Package _site directory
         run: tar czf site.tar.gz -C _site .
 
       - name: Upload site and config files to server
@@ -42,7 +42,7 @@ jobs:
             Gemfile.lock
           target: /home/ubuntu/chirpy-site
 
-      - name: SSH to server and deploy
+      - name: Remote extract and restart Docker service
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
