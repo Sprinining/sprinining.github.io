@@ -3,33 +3,38 @@ name: Build and Deploy Chirpy Blog
 on:
   push:
     branches:
-      - main # 监听 main 分支提交
+      - main # 只监听 main 分支的提交，触发此工作流
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 在 GitHub 提供的 Ubuntu 虚拟环境中运行
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        # 拉取仓库代码到 runner 本地
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
+        # 安装指定版本的 Ruby 环境，Jekyll 依赖 Ruby
 
       - name: Install dependencies
         run: |
           gem install bundler
           bundle install
+        # 安装 bundler 以及 Gemfile 中声明的所有依赖包
 
       - name: Build Chirpy static site
         run: JEKYLL_ENV=production bundle exec jekyll build
+        # 运行 Jekyll 构建静态站点，生成 _site 目录
 
       - name: Prepare deploy directory
         run: |
           mkdir -p deploy
           cp -r _site/* deploy/
+        # 新建 deploy 文件夹，复制生成的静态文件到 deploy 目录，方便统一上传
 
       - name: Upload static files to server
         uses: appleboy/scp-action@master
@@ -39,6 +44,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "deploy/*"
           target: "/home/ubuntu/chirpy-site/_site"
+        # 通过 SCP 把本地 deploy 目录里的所有文件上传到服务器指定目录
 
       - name: Restart nginx container on server
         uses: appleboy/ssh-action@v0.1.7
@@ -49,3 +55,4 @@ jobs:
           script: |
             cd /home/ubuntu/chirpy-site
             docker compose restart blog
+        # SSH 连接服务器，进入部署目录，重启 Docker Compose 中的 blog 服务，确保最新内容生效

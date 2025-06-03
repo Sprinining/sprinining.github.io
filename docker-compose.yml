@@ -2,11 +2,12 @@ version: "3.8"
 
 services:
   blog:
-    image: nginx:alpine
-    container_name: chirpy_blog
+    image: nginx:alpine # 使用轻量级的 nginx 官方镜像
+    container_name: chirpy_blog # 容器名字，方便管理
     ports:
-      - "9527:80"
+      - "9527:80" # 映射服务器的9527端口到容器内部的80端口
+        # 服务器外访问9527端口，实际上是访问容器内的80端口（nginx默认端口）
     volumes:
-      - ./_site:/usr/share/nginx/html:ro
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    restart: unless-stopped
+      - ./_site:/usr/share/nginx/html:ro # 挂载本地的 _site 目录到容器的 nginx 静态资源目录，只读模式
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro # 挂载自定义 nginx 配置文件，替换默认配置，只读模式
+    restart: unless-stopped # 容器异常退出自动重启，除非手动停止
