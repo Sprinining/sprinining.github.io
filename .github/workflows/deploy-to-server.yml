@@ -41,6 +41,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /home/ubuntu/chirpy-deploy
+            cd /home/ubuntu/chirpy-site
             docker-compose down
             docker-compose up --build -d
