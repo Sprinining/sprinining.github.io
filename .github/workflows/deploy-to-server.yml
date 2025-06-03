@@ -47,7 +47,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "_site/*"
+          source: "_site/index.html"
           target: "/home/ubuntu/chirpy-site/_site"
         # 直接上传 _site 内容到服务器指定目录
 
