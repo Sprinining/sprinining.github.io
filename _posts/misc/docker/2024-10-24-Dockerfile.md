@@ -1,7 +1,7 @@
 ---
 title: Dockerfile
 date: 2024-10-24 01:07:13 +0800
-categories: [other, docker]
+categories: [misc, docker]
 tags: [Docker]
 description: 镜像制作、Docker 分层存储机制
 ---

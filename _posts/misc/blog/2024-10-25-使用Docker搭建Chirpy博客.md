@@ -1,7 +1,7 @@
 ---
 title: 使用Docker搭建Chirpy博客
 date: 2024-10-25 02:01:02 +0800
-categories: [other, blog]
+categories: [misc, blog]
 tags: [Blog, Chripy, Docker]
 description: 制作镜像部署Chirpy
 ---

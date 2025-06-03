@@ -1,7 +1,7 @@
 ---
 title: Docker Compose
 date: 2024-10-24 12:08:20 +0800
-categories: [other, docker]
+categories: [misc, docker]
 tags: [Docker]
 description: 命令式安装以及 compose.yaml 文件
 ---

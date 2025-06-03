@@ -1,7 +1,7 @@
 ---
 title: Chirpy+Github
 date: 2024-09-23 04:15:25 +0800
-categories: [other, blog]
+categories: [misc, blog]
 tags: [Blog, Chripy]
 description: 
 ---
