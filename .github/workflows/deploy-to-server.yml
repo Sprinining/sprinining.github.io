@@ -31,7 +31,12 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "_site/*,Dockerfile,docker-compose.yml,Gemfile,Gemfile.lock"
+          source: |
+            _site/*
+            Dockerfile
+            docker-compose.yml
+            Gemfile
+            Gemfile.lock
           target: "/home/ubuntu/chirpy-site"
 
       - name: 远程重启 Docker 服务
