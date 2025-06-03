@@ -2,47 +2,39 @@ name: Build and Deploy Chirpy Blog
 
 on:
   push:
-    branches: [main]
+    branches: [main]  # 监听 main 分支的提交
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 拉取代码
         uses: actions/checkout@v4
 
-      - name: Setup Ruby
+      - name: 安装 Ruby 环境
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
 
-      - name: Install dependencies
+      - name: 安装依赖
         run: |
           gem install bundler
           bundle install
 
-      - name: Build static site with Jekyll
+      - name: 构建 Chirpy 静态站点
         run: JEKYLL_ENV=production bundle exec jekyll build
 
-      - name: Package _site directory
-        run: tar czf site.tar.gz -C _site .
-
-      - name: Upload site and config files to server
+      - name: 上传构建结果和必要文件到服务器
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: |
-            site.tar.gz
-            Dockerfile
-            docker-compose.yml
-            Gemfile
-            Gemfile.lock
-          target: /home/ubuntu/chirpy-site
+          source: "_site/*,Dockerfile,docker-compose.yml,Gemfile,Gemfile.lock"
+          target: "/home/ubuntu/chirpy-site"
 
-      - name: Remote extract and restart Docker service
+      - name: 远程重启 Docker 服务
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -50,7 +42,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/ubuntu/chirpy-site
-            tar xzf site.tar.gz
-            rm site.tar.gz
             docker compose down
             docker compose up --build -d
