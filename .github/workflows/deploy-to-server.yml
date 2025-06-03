@@ -48,7 +48,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           source: "_site/**"
-          target: "/home/ubuntu/chirpy-site/_site"
+          target: "/home/ubuntu/chirpy-site/"
         # 上传本地生成的静态文件夹 _site 内所有文件到服务器对应目录
 
       - name: Upload docker-compose.yml
