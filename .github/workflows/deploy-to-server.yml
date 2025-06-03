@@ -2,7 +2,7 @@ name: Build and Deploy Chirpy Blog
 
 on:
   push:
-    branches: [main]  # 监听 main 分支的提交
+    branches: [main] # 监听 main 分支的提交
 
 jobs:
   build-and-deploy:
@@ -25,11 +25,11 @@ jobs:
       - name: 构建 Chirpy 静态站点
         run: JEKYLL_ENV=production bundle exec jekyll build
 
-      - name: 列出当前目录文件
-        run: ls -alh
-
-      - name: 列出 _site 目录文件
-        run: ls -alh _site
+      - name: 准备上传目录
+        run: |
+          mkdir -p deploy
+          cp -r _site/* deploy/
+          cp Dockerfile docker-compose.yml Gemfile Gemfile.lock deploy/
 
       - name: 上传构建结果和必要文件到服务器
         uses: appleboy/scp-action@master
@@ -37,12 +37,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: |
-            _site/*
-            Dockerfile
-            docker-compose.yml
-            Gemfile
-            Gemfile.lock
+          source: "deploy/*"
           target: "/home/ubuntu/chirpy-site"
 
       - name: 远程重启 Docker 服务
