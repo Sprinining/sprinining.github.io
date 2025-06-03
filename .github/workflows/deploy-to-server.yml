@@ -25,6 +25,9 @@ jobs:
       - name: 构建 Chirpy 静态站点
         run: JEKYLL_ENV=production bundle exec jekyll build
 
+      - name: 显示 _site 目录内容（调试用）
+        run: ls -lah _site
+
       - name: 上传构建结果和必要文件到服务器
         uses: appleboy/scp-action@master
         with:
