@@ -3,7 +3,7 @@ title: C++NULL与nullptr
 date: 2025-05-28 10:18:30 +0800
 categories: [cpp, cpp basics]
 tags: [CPP]
-description: 
+description: "NULL为宏定义0，类型不安全；nullptr为类型安全的空指针常量。"
 ---
 ## C++NULL与nullptr
 

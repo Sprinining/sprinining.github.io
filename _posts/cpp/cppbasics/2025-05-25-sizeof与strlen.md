@@ -3,7 +3,7 @@ title: sizeof与strlen
 date: 2025-05-25 23:32:20 +0800
 categories: [cpp, cpp basics]
 tags: [CPP]
-description: 
+description: "sizeof返回变量或类型占用字节数，strlen计算字符串长度，不包括终止符。"
 ---
 ## sizeof与strlen
 
