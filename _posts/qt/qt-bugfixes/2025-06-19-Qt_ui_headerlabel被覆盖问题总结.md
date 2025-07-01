@@ -1,8 +1,8 @@
 ---
 title: Qt_ui_headerlabel被覆盖问题总结
 date: 2025-06-19 19:29:09 +0800
-categories: [qt, qtadvanced]
-tags: [Qt]
+categories: [qt, qt bugfixes]
+tags: [Qt, QtBug]
 description: ".ui 文件中 setupUi() 会重设 header，导致构造函数中 setHeaderLabels() 设置被覆盖。"
 ---
 ## Qt_ui_headerlabel被覆盖问题总结
