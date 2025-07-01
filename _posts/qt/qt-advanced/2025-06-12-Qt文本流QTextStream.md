@@ -1,7 +1,7 @@
 ---
 title: Qt文本流QTextStream
 date: 2025-06-12 11:01:52 +0800
-categories: [qt, qtadvanced]
+categories: [qt, qt advanced]
 tags: [Qt, Qt File]
 description: "QTextStream是Qt中用于读写文本数据的类，支持编码转换，可操作文件、字符串和标准输入输出流，便捷处理文本输入输出。"
 ---

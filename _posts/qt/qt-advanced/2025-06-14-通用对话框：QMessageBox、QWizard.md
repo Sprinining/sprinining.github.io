@@ -1,7 +1,7 @@
 ---
 title: 通用对话框：QMessageBox、QWizard
 date: 2025-06-14 18:02:03 +0800
-categories: [qt, qtadvanced]
+categories: [qt, qt advanced]
 tags: [Qt]
 description: "QMessageBox：用于显示提示、警告、错误等信息的标准消息框。QWizard：用于创建多步骤引导用户完成复杂任务的向导界面。"
 ---

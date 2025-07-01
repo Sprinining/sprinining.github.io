@@ -1,7 +1,7 @@
 ---
 title: 通用对话框：QColorDialog、QFontDialog、QInputDialog
 date: 2025-06-14 17:08:53 +0800
-categories: [qt, qtadvanced]
+categories: [qt, qt advanced]
 tags: [Qt]
 description: "QColorDialog 选颜色，QFontDialog 选字体，QInputDialog 获取用户文本或数字输入，都是快速实现用户交互的通用对话框组件。"
 ---

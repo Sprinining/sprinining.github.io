@@ -1,7 +1,7 @@
 ---
 title: Qt串行化数据流QDataStream
 date: 2025-06-12 16:06:34 +0800
-categories: [qt, qtadvanced]
+categories: [qt, qt advanced]
 tags: [Qt, Serialization]
 description: "QDataStream 是 Qt 提供的二进制串行化工具，用于将数据结构读写到文件或缓冲区中，常用于保存和恢复数据。"
 ---

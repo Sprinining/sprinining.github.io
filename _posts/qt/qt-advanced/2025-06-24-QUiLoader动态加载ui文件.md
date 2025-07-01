@@ -1,7 +1,7 @@
 ---
 title: QUiLoader动态加载ui文件
 date: 2025-06-24 23:08:14 +0800
-categories: [qt, qtadvanced]
+categories: [qt, qt advanced]
 tags: [Qt]
 description: "QUiLoader 是 Qt 类，运行时解析 .ui XML 文件，动态创建控件树，实现界面热加载和灵活切换。"
 ---

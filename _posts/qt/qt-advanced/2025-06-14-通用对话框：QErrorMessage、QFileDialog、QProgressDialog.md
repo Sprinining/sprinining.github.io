@@ -1,7 +1,7 @@
 ---
 title: 通用对话框：QErrorMessage、QFileDialog、QProgressDialog
 date: 2025-06-14 17:34:15 +0800
-categories: [qt, qtadvanced]
+categories: [qt, qt advanced]
 tags: [Qt]
 description: "QErrorMessage 用于显示错误提示；QFileDialog 用于选择文件或目录；QProgressDialog 显示任务进度，支持用户取消，常用于耗时操作中。"
 ---

@@ -1,7 +1,7 @@
 ---
 title: 替代Qt6废弃的QMediaPlaylist
 date: 2025-06-30 17:35:06 +0800
-categories: [qt, qtadvanced]
+categories: [qt, qt advanced]
 tags: [Qt]
 description: "使用 QVector<QUrl> 管理音频列表，结合索引手动控制播放，替代 Qt6 中废弃的 QMediaPlaylist。"
 ---
