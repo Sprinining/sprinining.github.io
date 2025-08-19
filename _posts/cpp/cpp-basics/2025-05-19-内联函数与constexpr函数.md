@@ -2,7 +2,7 @@
 title: 内联函数与constexpr函数
 date: 2025-05-19 05:30:31 +0800
 categories: [cpp, cpp basics]
-tags: [CPP, Inline, Constexpr]
+tags: [CPP, inline, constexpr]
 description: "内联函数减少调用开销，提升效率；constexpr函数在编译期求值，提高性能和常量表达能力。"
 ---
 ## 内联函数与constexpr函数

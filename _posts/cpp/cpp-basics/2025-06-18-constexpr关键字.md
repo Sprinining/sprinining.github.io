@@ -2,7 +2,7 @@
 title: constexpr关键字
 date: 2025-06-18 11:38:35 +0800
 categories: [cpp, cpp basics]
-tags: [CPP, Constexpr]
+tags: [CPP, constexpr]
 description: "constexpr 指定常量表达式，表示变量或函数可在编译期求值，提高效率并保证常量性质。"
 ---
 ## constexpr 关键字
