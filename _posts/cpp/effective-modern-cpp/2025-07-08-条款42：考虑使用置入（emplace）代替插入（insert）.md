@@ -12,7 +12,7 @@ description: "使用 emplace 代替 insert 可避免临时对象构造，直接�
 假设有一个 `std::vector<std::string>`，我们想往里面添加字符串。
 
 ```cpp
-std::vector<std::string> vs;        // std::string的容器
+std::vector<std::string> vs;        // std::string 的容器
 vs.push_back("xyzzy");              // 添加字符串字面量
 ```
 
@@ -39,7 +39,7 @@ vs.push_back(std::string("xyzzy"));
 
 编译器先创建了一个临时的 `std::string`（我们称之为 temp），再将这个临时对象移动到 `vector` 内部。
 
-### 这个过程的效率问题
+### 效率问题
 
 - 先调用一次 `std::string` 构造函数，创建临时对象 temp
 - 再调用一次移动构造函数，将 temp 迁移到容器内部
@@ -47,9 +47,9 @@ vs.push_back(std::string("xyzzy"));
 
 这个过程调用了两次构造函数和一次析构函数，存在不必要的开销。
 
-### 解决方案：使用 `emplace_back`
+### 解决方案：使用 emplace_back
 
-`emplace_back` 允许我们直接传递构造 `std::string` 所需的参数，在容器内部直接构造对象，避免临时对象产生：
+`emplace_back` 允许直接传递构造 `std::string` 所需的参数，在容器内部直接构造对象，避免临时对象产生：
 
 ```cpp
 vs.emplace_back("xyzzy");       // 直接用字符串字面量构造容器内的std::string
@@ -63,8 +63,8 @@ vs.emplace_back(50, 'x');       // 插入由50个'x'组成的std::string
 
 ### 置入函数与插入函数的对比
 
-- 插入函数（如 `push_back`）接受 **元素对象**（如 `std::string`）
-- 置入函数（如 `emplace_back`）接受 **元素构造参数**
+- 插入函数（如 `push_back`）接受**元素对象**（如 `std::string`）
+- 置入函数（如 `emplace_back`）接受**元素构造参数**
 
 这使得置入函数可以避免临时对象的创建和销毁。
 
@@ -93,7 +93,7 @@ vec.emplace_back(5, 'x');          // 构造 "xxxxx"
 
 ```cpp
 std::string queenOfDisco("Donna Summer");
-vs.push_back(queenOfDisco);      // 拷贝构造queenOfDisco
+vs.push_back(queenOfDisco);      // 拷贝构造 queenOfDisco
 vs.emplace_back(queenOfDisco);   // 功能相同，效果一致
 ```
 
@@ -126,7 +126,7 @@ vs.emplace_back("xyzzy");   // 在容器末尾构造
 #### **容器允许重复元素或添加元素通常不重复**
 - 因为置入实现可能需要构造节点进行比较，若值已存在会被销毁，导致额外开销。
 
-### 特殊情况一：资源管理类对象（如 `std::shared_ptr`）
+### 特殊情况一：资源管理类对象（如 std::shared_ptr）
 
 假设有：
 
@@ -191,3 +191,4 @@ regexes.push_back(nullptr);       // 编译错误
 - 置入函数适用于：通过构造函数添加元素，参数类型不同，允许重复元素的容器
 - 资源管理类对象插入需特别注意异常安全
 - 置入函数会调用 explicit 构造函数，需注意隐式转换带来的副作用
+
